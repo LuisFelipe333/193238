@@ -21,12 +21,12 @@ class Filosofo(threading.Thread):
         tenedor1, tenedor2 = self.tenedorizquierdo, self.tenedorderecho
         #print('a')
         while self.running:
-            tenedor1.acquire() # wait operation on izquierdo tenedor
+            tenedor1.acquire() 
             #print ('Filosofo %s obtiene el tenedor izquierdo' % self.indice)
             locked = tenedor2.acquire(False) 
             #print(locked)
             #print ('Filosofo %s intenta obtener el tenedor derecho' % self.indice)
-            if locked: break #if derecho tenedor is not available leave izquierdo tenedor
+            if locked: break #verificar si derecho esta disponible
             tenedor1.release()
             #print ('Filosofo %s suelta los tenedores que tenia' % self.indice)
             tenedor1, tenedor2 = tenedor2, tenedor1
